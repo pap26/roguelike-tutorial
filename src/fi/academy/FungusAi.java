@@ -4,9 +4,9 @@ public class FungusAi extends OtusAi {
     private OtusTehdas tehdas;
     private int spreadcount;
 
-    public FungusAi(Otus otus, OtusTehdas factory) {
+    public FungusAi(Otus otus, OtusTehdas tehdas) {
         super(otus);
-        this.tehdas = factory;
+        this.tehdas = tehdas;
     }
 
     public void onUpdate(){
@@ -15,8 +15,8 @@ public class FungusAi extends OtusAi {
     }
 
     private void spread(){
-        int x = otus.x + (int)(Math.random() * 110) - 5;
-        int y = otus.y + (int)(Math.random() * 110) - 5;
+        int x = otus.x + (int)(Math.random() * 15) - 5;
+        int y = otus.y + (int)(Math.random() * 15) - 5;
 
         if (!otus.canEnter(x, y))
             return;

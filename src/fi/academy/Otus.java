@@ -67,18 +67,17 @@ public class Otus {
         return world.tile(wx, wy).isGround() && world.otus(wx, wy) == null;
     }
 
-    public void attack(Otus other){
-        world.remove(other);
+    public void attack (Otus other) {
+        int amount = Math.max(0, attackValue() - other.defenseValue());
+        amount = (int) (Math.random() * amount) + 1;
+        other.modifyHp(-amount);
     }
 
-
-    public void modifyHp(int amount) {
+    public void modifyHp (int amount) {
         hp += amount;
-
         if (hp < 1)
             world.remove(this);
     }
-
     public void notify(String message, Object ... params){
         ai.onNotify(String.format(message, params));
     }
