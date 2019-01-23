@@ -20,7 +20,7 @@ public enum Tile {
         this.color = color;
     }
 
-    public boolean voiKaivaa() {
+    public boolean canDig() {
         return this == Tile.WALL;
     }
 

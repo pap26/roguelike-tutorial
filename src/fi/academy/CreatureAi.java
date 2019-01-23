@@ -1,12 +1,12 @@
 package fi.academy;
 
-public class OtusAi {
-    protected Otus otus;
+public class CreatureAi {
+    protected Creature creature;
 
 
-    public OtusAi(Otus otus){
-        this.otus = otus;
-        this.otus.setOtusAi(this);
+    public CreatureAi(Creature creature){
+        this.creature = creature;
+        this.creature.setCreatureAi(this);
     }
 
     public void onUpdate(){

@@ -29,7 +29,7 @@ public class DunskuBuilder {
 
     //tarkista, että seinät ja lattiat smootheja (jos enimmäkseen seinää = seinä, jos enimmäkseen lattiaa = lattia
 
-    private DunskuBuilder siivoa(int times) {
+    private DunskuBuilder smoothMap(int times) {
         Tile[][] tiles2 = new Tile[width][height];
         for (int time = 0; time < times; time++) {
 
@@ -61,7 +61,7 @@ public class DunskuBuilder {
     //Buildaa dunsku!
 
     public DunskuBuilder makeCaves() {
-        return randomizeTiles().siivoa(8);
+        return randomizeTiles().smoothMap(8);
     }
 
 
