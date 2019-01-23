@@ -18,20 +18,20 @@ public class World {
         return height;
     }
 
-    private List<Otus> monsterit;
+    private List<Creature> monsters;
 
 
     public World(Tile[][] tiles) {
         this.tiles = tiles;
         this.width = tiles.length;
         this.height = tiles[0].length;
-        this.monsterit = new ArrayList<Otus>();
+        this.monsters = new ArrayList<Creature>();
     }
 
     //aseta monsteri tiettyyn paikkaan
 
-    public Otus otus(int x, int y) {
-        for (Otus o : monsterit) {
+    public Creature creature(int x, int y) {
+        for (Creature o : monsters) {
             if (o.x == x && o.y == y)
                 return o;
         }
@@ -56,13 +56,13 @@ public class World {
     }
 
     public void dig(int x, int y) {
-        if (tile(x, y).voiKaivaa())
+        if (tile(x, y).canDig())
             tiles[x][y] = Tile.FLOOR;
     }
 
     //otusten tiputtelu kartalle, tsekkaus onko tile varattu, lisaa uusi monsteri listaam
 
-    public void addAtEmptyLocation(Otus otus) {
+    public void addAtEmptyLocation(Creature creature) {
         int x;
         int y;
 
@@ -70,23 +70,23 @@ public class World {
             x = (int) (Math.random() * width);
             y = (int) (Math.random() * height);
         }
-        while (!tile(x, y).isGround() || otus(x, y) != null);
+        while (!tile(x, y).isGround() || creature(x, y) != null);
 
-        otus.x = x;
-        otus.y = y;
-        monsterit.add(otus);
+        creature.x = x;
+        creature.y = y;
+        monsters.add(creature);
     }
 
     //attack-metodin lopputulos:
 
-    public void remove(Otus other) {
-        monsterit.remove(other);
+    public void remove(Creature other) {
+        monsters.remove(other);
     }
 
     public void update() {
-        List<Otus> toUpdate = new ArrayList<Otus>(monsterit);
-        for (Otus otus : toUpdate) {
-            otus.update();
+        List<Creature> toUpdate = new ArrayList<Creature>(monsters);
+        for (Creature creature : toUpdate) {
+            creature.update();
         }
 
     }

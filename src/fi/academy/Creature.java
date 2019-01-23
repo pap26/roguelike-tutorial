@@ -2,7 +2,7 @@ package fi.academy;
 
 import java.awt.Color;
 
-public class Otus {
+public class Creature {
 
     private World world;
 
@@ -31,10 +31,10 @@ public class Otus {
     private Color color;
     public Color color() { return color; }
 
-    private OtusAi ai;
-    public void setOtusAi(OtusAi ai) { this.ai = ai; }
+    private CreatureAi ai;
+    public void setCreatureAi(CreatureAi ai) { this.ai = ai; }
 
-    public Otus(World world, char glyph, Color color, int maxHp, int attack, int defense){
+    public Creature(World world, char glyph, Color color, int maxHp, int attack, int defense){
         this.world = world;
         this.glyph = glyph;
         this.color = color;
@@ -47,7 +47,7 @@ public class Otus {
     //lisätään hyökkäys, poistetaan tapettu monsteri
 
     public void moveBy(int mx, int my){
-        Otus other = world.otus(x+mx, y+my);
+        Creature other = world.creature(x+mx, y+my);
 
         if (other == null)
             ai.onEnter(x+mx, y+my, world.tile(x+mx, y+my));
@@ -64,10 +64,10 @@ public class Otus {
     }
 
     public boolean canEnter(int wx, int wy) {
-        return world.tile(wx, wy).isGround() && world.otus(wx, wy) == null;
+        return world.tile(wx, wy).isGround() && world.creature(wx, wy) == null;
     }
 
-    public void attack (Otus other) {
+    public void attack (Creature other) {
         int amount = Math.max(0, attackValue() - other.defenseValue());
         amount = (int) (Math.random() * amount) + 1;
         other.modifyHp(-amount);

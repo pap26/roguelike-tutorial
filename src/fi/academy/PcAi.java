@@ -2,21 +2,21 @@ package fi.academy;
 
 import java.util.List;
 
-public class SankariAi extends OtusAi {
+public class PcAi extends CreatureAi {
 
     private List<String> messages;
 
-    public SankariAi(Otus otus, List<String> messages) {
-        super(otus);
+    public PcAi(Creature creature, List<String> messages) {
+        super(creature);
         this.messages = messages;
     }
 
     public void onEnter(int x, int y, Tile tile) {
         if (tile.isGround()) {
-            otus.x = x;
-            otus.y = y;
-        } else if (tile.voiKaivaa()) {
-            otus.dig(x, y);
+            creature.x = x;
+            creature.y = y;
+        } else if (tile.canDig()) {
+            creature.dig(x, y);
         }
     }
 
